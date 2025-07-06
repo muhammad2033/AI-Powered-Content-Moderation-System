@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Content Moderation</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>🛡️ AI Content Moderation</h1>
+        <form method="POST" enctype="multipart/form-data" class="moderation-form">
+            <label for="text-input">✍️ Enter Text:</label>
+            <textarea name="user_text" rows="5" cols="50" id="text-input" placeholder="Write your content here..."></textarea>
+
+            <label for="image-input">🖼️ Upload Image:</label>
+            <input type="file" name="image" id="image-input">
+
+            <input type="submit" value="🚀 Moderate Content">
+        </form>
+
+        {% if text_result %}
+        <div class="result-box">
+            <h3>📝 Text Result:</h3>
+            <ul>
+                {% for item in text_result %}
+                    <li><strong>{{ item.label }}</strong>: {{ item.score | round(2) }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if image_result %}
+        <div class="result-box">
+            <h3>🖼️ Image Result:</h3>
+            <p>
+                {% if image_result is iterable and image_result is not string %}
+                    <ul>
+                        {% for item in image_result %}
+                            <li><strong>{{ item.label }}</strong>: {{ item.score | round(2) }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    {{ image_result }}
+                {% endif %}
+            </p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

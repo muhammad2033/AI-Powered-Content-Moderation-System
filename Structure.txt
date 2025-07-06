@@ -1,0 +1,12 @@
+content_moderation/
+│
+├── app.py
+├── text_moderation.py
+├── image_moderation.py
+├── requirements.txt
+├── templates/
+│   └── index.html
+├── static/
+│   └── style.css
+│   └── script.js
+├── uploads/  # Directory for uploaded imagesw
